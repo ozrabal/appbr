@@ -1,0 +1,13 @@
+[ng-cloak] {
+    display: block !important;
+    opacity: 0;
+}
+
+[ng-cloak],
+.ng-binding {
+    transition: opacity 300ms ease-in-out;
+}
+
+.ng-binding {
+    opacity: 1;
+}

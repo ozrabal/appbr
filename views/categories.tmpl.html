@@ -1,0 +1,15 @@
+{{ cat.it }}
+
+<ul class="nav nav-sidebar" >
+categories
+    <li ng-repeat="category in categories" >
+        <a ui-sref="brand.bookmarks({category:category.name})" >
+            {{category.name}}
+        </a>
+
+    </li>
+</ul>
+
+<a ui-sref="brand.categories({folderPath: 's/s/d/f', page:null})">p 2</a><br>
+<a ui-sref="brand.categories({folderPath: 's/dss/d/f', page:3})">p 3</a><br>
+<a ui-sref="brand.categories({folderPath: 's/dss/d/f', page:4})">p 4</a>

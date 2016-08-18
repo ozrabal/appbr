@@ -1,0 +1,11 @@
+<a ng-if="!auth.isLoggedIn()" ui-sref="root.login" class="btn btn-secondary btn-small">login</a>
+<a ng-if="auth.isLoggedIn()" ui-sref="root.logout" class="btn btn-primary ">logout</a>
+<h3>{{category.header}}</h3>
+<ul class="nav">
+    <li><a ui-sref="root.home">Home</a></li>
+    <li ng-repeat="category in category.all" >
+        <a ui-sref="root.home.category({category:category.slug})">
+            {{category.name}}
+        </a>
+    </li>
+</ul>
