@@ -1,4 +1,4 @@
-require(['angular', 'app', 'category/category.model', 'item/item.model'], function(app) {
+require(['angular', 'app', 'category/category.model', 'item/item.model', 'directives/infinityscroll.directive'], function(app) {
     angular.module('app.home', [])
         .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider) {
             $stateProvider
@@ -50,7 +50,21 @@ require(['angular', 'app', 'category/category.model', 'item/item.model'], functi
                 .then(function (items) {
                     home.items = items;
                 });
+
+
+            $scope.getItems = function(){
+                ItemModel.getItemsByCategory('home', Math.floor(Math.random() * 10) + 1)
+                    .then(function (items) {
+                        angular.forEach(items, function (item) {
+                            home.items.push(item);
+                        });
+
+
+                    });
+            }
         })
+
+
         //TODO refactor this
         .controller('LoginController', function($scope, auth, $state){
             var login  = this;
@@ -80,3 +94,4 @@ require(['angular', 'app', 'category/category.model', 'item/item.model'], functi
         })
     ;
 });
+
