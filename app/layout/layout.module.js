@@ -1,4 +1,11 @@
-require(['angular', 'app', 'category/category.model', 'item/item.model', 'directives/infinityscroll.directive'], function(app) {
+require([
+    'angular',
+    'app',
+    'category/category.model',
+    'item/item.model',
+    'directives/infinityscroll.directive',
+    'cart/addcart.directive'
+], function(app) {
     angular.module('app.home', [])
         .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider) {
             $stateProvider
