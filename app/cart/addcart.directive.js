@@ -12,7 +12,7 @@ define(['angular', 'app'], function(angular, app){
                 //scope.$watch('item', function(item) {
                 element.bind('click', function(){
                         console.log(scope.item);
-                    
+
                     });
                 //})
             }
