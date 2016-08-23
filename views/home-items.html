@@ -8,7 +8,9 @@
             </a>
             <div class="caption">
                 <h3><a ui-sref="root.home.item({id:bookmark.slug})">{{bookmark.title}}</a></h3>
-                <button add-to-cart item="{{bookmark.id}}" class="btn btn-primary">Add to cart</button>
+                Option A<input type="checkbox" ng-model="bookmark.option.a" >
+                Option B<input type="checkbox" ng-model="bookmark.option.b" >
+                <button add-to-cart item="bookmark" class="btn btn-primary">Add to cart</button>
             </div>
         </div>
     </div>

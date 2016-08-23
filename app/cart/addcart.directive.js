@@ -5,15 +5,14 @@ define(['angular', 'app'], function(angular, app){
             restrict: 'A',
 
             scope: {
-                item: '@'
+                item: '='
             },
 
             link: function(scope, element, attributes){
                 //scope.$watch('item', function(item) {
                 element.bind('click', function(){
-                   // console.log(addToCart);
-
-                        console.log(attributes.item);
+                        console.log(scope.item);
+                    
                     });
                 //})
             }
