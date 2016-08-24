@@ -1,6 +1,6 @@
 <h3>Homepage</h3>
 <div infinityscroll="getItems()" >
-<div ng-repeat="bookmark in home.items">
+<div ng-repeat="bookmark in home.items track by bookmark.id">
     <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
             <a ui-sref="root.home.item({id:bookmark.slug})">
