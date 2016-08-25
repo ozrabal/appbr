@@ -1,6 +1,6 @@
-define(['angular', 'app', 'cart/cart.module'], function(angular, app, cart){
-    angular.module('app')
-        .directive('addToCart', function(){
+define(['angular', 'app' ], function(angular, app){
+    angular.module('app.cart')
+        .directive('addToCart',[ function(){
         return{
             restrict: 'E',
             templateUrl:'app/cart/addtocart.html',
@@ -22,10 +22,10 @@ define(['angular', 'app', 'cart/cart.module'], function(angular, app, cart){
             },*/
             link: function(scope, element, attributes){
                 //scope.$watch('item', function(item) {
-               /* element.bind('click', function(){
+                element.bind('click', function(){
                         console.log(scope.item);
 
-                    });*/
+                    });
 //console.log(cart);
 //todo called twice??
                 /*scope.itemInCart = function(){
@@ -36,5 +36,5 @@ define(['angular', 'app', 'cart/cart.module'], function(angular, app, cart){
                 //})
             }
         }
-    })
+    }])
 });

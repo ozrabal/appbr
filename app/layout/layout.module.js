@@ -5,9 +5,9 @@ require([
     'item/item.model',
     'directives/infinityscroll.directive',
     'cart/cart.module',
-    'cart/addcart.directive'
+    //'cart/addcart.directive'
 ], function(app) {
-    angular.module('app.home', [])
+    angular.module('app.home',[])
         .config(['$stateProvider', '$urlRouterProvider', function ($stateProvider) {
             $stateProvider
                 .state('root.home', {

@@ -1,16 +1,10 @@
 define([
-    'angular'
+    'angular',
+    //'cart/addcart.directive'
 ],
 function(angular){
-    angular.module('cart', [])
-        .config([function(){
+    angular.module('app.cart',[])
 
-        }])
-        .controller('CartController', ['$scope', function($scope){
-            console.log('incart' + $scope.item.id);
-            $scope.itemInCart = function(){
-                console.log('incart' + scope.item.id);
-                return true;
-            }
-        }])
+
+
 })
