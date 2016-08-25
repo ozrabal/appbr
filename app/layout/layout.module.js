@@ -4,6 +4,7 @@ require([
     'category/category.model',
     'item/item.model',
     'directives/infinityscroll.directive',
+    'cart/cart.module',
     'cart/addcart.directive'
 ], function(app) {
     angular.module('app.home', [])
@@ -53,7 +54,7 @@ require([
         })
         .controller('HomeItems', function HomeController($scope, ItemModel) {
             var home = this;
-            ItemModel.getItemsByCategory('home', Math.floor(Math.random() * 10) + 1)
+            ItemModel.getItemsByCategory('home', Math.floor(Math.random() * 2) + 1)
                 .then(function (items) {
                     home.items = items;
                 });

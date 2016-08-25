@@ -1,33 +1,34 @@
-define(['angular', 'app'], function(angular, app){
+define(['angular', 'app', 'cart/cart.module'], function(angular, app, cart){
     angular.module('app')
         .directive('addToCart', function(){
         return{
             restrict: 'E',
             templateUrl:'app/cart/addtocart.html',
+            //controller : 'CartController',
             scope: {
                 item: '='
             },
             transclude: true,
             //replace: true,
-            compile: function(element, attributes){
+           /* compile: function(element, attributes){
                 return {
-                    pre:function(scope, element, attributes){
+                    post:function(scope, element, attributes){
                         scope.itemInCart = function(){
                             console.log(scope.item.id)
                             return true;
                         }
                     }
                 }
-            },
+            },*/
             link: function(scope, element, attributes){
                 //scope.$watch('item', function(item) {
-                element.bind('click', function(){
+               /* element.bind('click', function(){
                         console.log(scope.item);
 
-                    });
-
+                    });*/
+//console.log(cart);
 //todo called twice??
-               /* scope.itemInCart = function(){
+                /*scope.itemInCart = function(){
                     console.log('incart' + scope.item.id);
                     return true;
                 }*/

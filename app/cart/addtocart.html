@@ -1,2 +1,2 @@
-<button  class="btn btn-primary">Add to cart</button>
-<span ng-if="itemInCart()">In cart</span>
+<button  class="btn btn-primary" ng-transclude>Add to cart</button>
+<span ng-show="itemInCart()" ng-transclude>In cart</span>
