@@ -1,4 +1,8 @@
-define(['angular', 'app' ], function(angular, app){
+define([
+    'angular',
+    'app',
+    'cart/cart.module'
+], function(angular, app){
     angular.module('app.cart')
         .directive('addToCart',[ function(){
         return{

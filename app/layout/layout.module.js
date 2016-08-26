@@ -4,7 +4,7 @@ require([
     'category/category.model',
     'item/item.model',
     'directives/infinityscroll.directive',
-    'cart/cart.module',
+    //'cart/cart.module',
     //'cart/addcart.directive'
 ], function(app) {
     angular.module('app.home',[])

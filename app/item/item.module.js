@@ -1,9 +1,10 @@
 define([
     'angular',
-    'item/item.model'
+    'item/item.model',
+        'cart/cart.module',
 ],
 function (angular) {
-    angular.module('app.item', [])
+    angular.module('app.item', ['app.cart'])
         .config(function ($locationProvider, $stateProvider) {
             $stateProvider
                 .state('root.home.item', {

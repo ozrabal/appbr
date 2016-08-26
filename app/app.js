@@ -5,14 +5,17 @@ define('app',[
     'item/item.module',
     'services/auth.service',
     'services/session.service',
-    'services/authinterceptor.service'
+    'services/authinterceptor.service',
+
 ],
 function (angular) {
     var app = angular.module('app',[
+
                 'ui.router',
                 'app.home',
                 'app.category',
-                'app.item'
+                'app.item',
+            //'ngCart',
     ])
     .constant('API', {
         'URL': 'http://brand.dv/data/api.php'
