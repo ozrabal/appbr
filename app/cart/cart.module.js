@@ -3,6 +3,29 @@ define([
 ],
 function(angular, app){
     angular.module('app.cart',[])
+
+        .config(function ($locationProvider, $stateProvider) {
+            $stateProvider
+                .state('root.home.cart', {
+                    url: 'cart',
+                    data: {
+                        authenticated: true
+                    },
+                    views: {
+                        'content@': {
+                            controller: 'CartDetailsController as cartDetails',
+                            templateUrl: 'app/cart/views/_cart.html'
+                        }
+                    }
+                })
+        })
+        .controller('CartDetailsController',['$scope', 'cartService', function($scope, cartService){
+            //todo avoid duplicated!!
+            $scope.cart = cartService;
+
+        }])
+
+
         .controller('CartController',['$scope', 'cartService', function($scope, cartService){
 /*
             $scope.$on('cart:itemAdded', function(ev, args){
@@ -31,7 +54,7 @@ function(angular, app){
                 this.$cart = {
                     items : []
                 };
-                console.log(this);
+                //console.log(this);
             };
 
 
@@ -52,8 +75,8 @@ function(angular, app){
 
 
             this.getItems = function(){
-                console.log('get');
-                return this.$cart.items.length;
+                //console.log('get');
+                return this.$cart.items;
             }
 
 
@@ -76,7 +99,7 @@ function(angular, app){
                         console.log(scope.item);
                         cartService.addItem();
                     });
-//todo called twice??
+
                     })
                 }*/
             }

@@ -1,9 +1,9 @@
 
 <div ng-hide="itemInCart()" ng-transclude>
-    <button  class="btn btn-primary" ng-click="cart.addItem(item)">Add to cart</button>
+    <button  class="btn btn-success" ng-click="cart.addItem(item)">Add to cart</button>
 
 </div>
 <div ng-show="itemInCart()">
-    Item in cart <button  class="btn btn-primary" ng-click="cart.removeItem(item)">Remove</button>
+    Item in cart <button  class="btn btn-danger" ng-click="cart.removeItem(item)">Remove</button>
 
 </div>

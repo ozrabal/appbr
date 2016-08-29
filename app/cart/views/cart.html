@@ -1,3 +1,8 @@
-<div class="col-md-4">items: {{ cart.getItems() }}
-    <br />{{ cart.total() | currency }}
+<div class="col-md-4">
+    <h4>Items in cart:</h4>
+    <ul ng-repeat="item in cart.getItems()">
+        <li>{{item.title}}</li>
+    </ul>
+
+    <a ui-sref="root.home.cart">Checkout</a>
 </div>
