@@ -9,14 +9,14 @@ function(angular, app){
                 console.log('eventX found on Controller1 $scope');
             });
 */
-
+            //todo save cart in session/local storage
             $scope.cart = cartService;
 
-            $scope.itemInCart = function(){
-
-                console.log('incart' + $scope.item.id);
-//mock
-                return true;
+            $scope.itemInCart = function() {
+                if (_.find(cartService.$cart.items, {'id': $scope.item.id})) {
+                    return true;
+                }
+                return false;
             }
 
 
@@ -39,15 +39,17 @@ function(angular, app){
                 
             }
 
-
-
-
             this.addItem = function(item){
-                console.log('add' + item);
-                $rootScope.$broadcast('cart:itemAdded', item.id);
-
+                //$rootScope.$broadcast('cart:itemAdded', item.id);
                 this.$cart.items.push(item);
             }
+
+            this.removeItem = function(item){
+                _.remove(this.$cart.items, function(cartItem){
+                    return cartItem.id === item.id;
+                })
+            }
+
 
             this.getItems = function(){
                 console.log('get');
