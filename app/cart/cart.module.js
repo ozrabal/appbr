@@ -22,10 +22,11 @@ function(angular, app){
         .controller('CartDetailsController',['$scope', 'cartService', function($scope, cartService){
             //todo avoid duplicated!!
             $scope.cart = cartService;
+            $scope.hidecart =  true;
 
         }])
 
-
+//todo remove controller
         .controller('CartController',['$scope', 'cartService', function($scope, cartService){
 /*
             $scope.$on('cart:itemAdded', function(ev, args){
@@ -34,7 +35,7 @@ function(angular, app){
 */
             //todo save cart in session/local storage
             $scope.cart = cartService;
-
+//$scope.minicart = true;
             $scope.itemInCart = function() {
                 if (_.find(cartService.$cart.items, {'id': $scope.item.id})) {
                     return true;
@@ -82,6 +83,7 @@ function(angular, app){
 
 
         }])
+        //todo remove, unused
         .directive('addToCart',['cartService', function(cartService){
             //console.log('cart');
             return {
@@ -104,9 +106,41 @@ function(angular, app){
                 }*/
             }
         }])
+
+        .component('addCart', {
+
+            templateUrl:'app/cart/views/addcart.html',
+            controller: 'CartCompController',
+            controllerAs: 'cartc',
+            bindings: {
+                item: '<'
+            }
+        })
+        .controller('CartCompController', ['cartService', function(cartService, $element, $attrs){
+            var cartc = this;
+
+            cartc.addItem = function(item){
+                cartService.addItem(item);
+            }
+
+            cartc.itemInCart = function(item) {
+                if (_.find(cartService.$cart.items, {'id': item.id})) {
+                    return true;
+                }
+                return false;
+            }
+
+            cartc.removeItem = function(item){
+                cartService.removeItem(item);
+            }
+
+
+        }])
+
+        //todo rewrite to component
         .directive('cart',['cartService', function(cartService){
             return {
-                scope: {},
+                //scope: '=',
                 restrict: 'E',
                 controller : 'CartController',
                 transclude: true,
