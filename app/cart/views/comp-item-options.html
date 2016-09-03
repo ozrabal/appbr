@@ -1,0 +1,6 @@
+<div ng-if="$ctrl.item.option" class="pull-left">
+    <h4>Options:</h4>
+    <ul ng-repeat="(option, value) in $ctrl.item.option">
+        <li>{{option}} : {{value}}</li>
+    </ul>
+</div>

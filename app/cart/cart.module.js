@@ -3,7 +3,7 @@ define([
 ],
 function(angular, app){
     angular.module('app.cart',[])
-
+    //todo global templates path for module
         .config(function ($locationProvider, $stateProvider) {
             $stateProvider
                 .state('root.home.cart', {
@@ -37,12 +37,14 @@ function(angular, app){
             };
 
             this.getItemById = function(id){
-                
+                return _.find(this.$cart.items, {'id': id});
+                //console.log(item);
             }
 
             this.addItem = function(item){
                 //$rootScope.$broadcast('cart:itemAdded', item.id);
                 this.$cart.items.push(item);
+                console.log(this.$cart.items);
                 //todo real product options, price etc...
             }
 
@@ -57,7 +59,17 @@ function(angular, app){
             }
 
         })
+        //todo move to global item mod
+        .component('itemOptions', {
+            templateUrl: 'app/cart/views/comp-item-options.html',
+            controller: 'ItemOptionsController',
+            bindings: {
+                item: '<'
+            }
+        })
+        .controller('ItemOptionsController', function(){
 
+        })
         .component('addToCart', {
             templateUrl: 'app/cart/views/comp-add-to-cart.html',
             controller: 'CartComponentController',
@@ -80,7 +92,7 @@ function(angular, app){
             }
 
             this.itemInCart = function(item) {
-                if (_.find(cartService.$cart.items, {'id': item.id})) {
+                if(cartService.getItemById(item.id)){
                     return true;
                 }
                 return false;

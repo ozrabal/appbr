@@ -1,4 +1,10 @@
 <h2>Cart details</h2>
-<ul ng-repeat="item in cart.getItems()">
-    <li>{{item.title}} <button  class="btn btn-danger" ng-click="cart.removeItem(item)">Remove</button></li>
+<ul ng-repeat="item in cart.getItems()" class="list-group">
+    <li class="list-group-item clearfix">
+        <h3>{{item.title}}</h3>
+        <item-options item="item"></item-options>
+        <a class="btn btn-xs btn-danger pull-right" ng-click="cart.removeItem(item)">
+            <span class="glyphicon glyphicon-remove"></span>
+        </a>
+    </li>
 </ul>
