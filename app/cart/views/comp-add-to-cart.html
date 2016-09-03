@@ -1,0 +1,6 @@
+<div ng-hide="$ctrl.itemInCart($ctrl.item)">
+    <button  class="btn btn-success" ng-click="$ctrl.addItem($ctrl.item)">Add to cart</button>
+</div>
+<div ng-show="$ctrl.itemInCart($ctrl.item)">
+    Item in cart <button  class="btn btn-danger" ng-click="$ctrl.removeItem($ctrl.item)">Remove</button>
+</div>

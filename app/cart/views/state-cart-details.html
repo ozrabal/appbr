@@ -1,5 +1,4 @@
 <h2>Cart details</h2>
-
 <ul ng-repeat="item in cart.getItems()">
     <li>{{item.title}} <button  class="btn btn-danger" ng-click="cart.removeItem(item)">Remove</button></li>
 </ul>

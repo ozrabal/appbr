@@ -14,50 +14,27 @@ function(angular, app){
                     views: {
                         'content@': {
                             controller: 'CartDetailsController as cartDetails',
-                            templateUrl: 'app/cart/views/_cart.html'
+                            templateUrl: 'app/cart/views/state-cart-details.html'
                         }
                     }
                 })
         })
         .controller('CartDetailsController',['$scope', 'cartService', function($scope, cartService){
-            //todo avoid duplicated!!
+            //todo avoid duplicated carts!!
             $scope.cart = cartService;
             $scope.hidecart =  true;
 
         }])
 
-//todo remove controller
-        .controller('CartController',['$scope', 'cartService', function($scope, cartService){
-/*
-            $scope.$on('cart:itemAdded', function(ev, args){
-                console.log('eventX found on Controller1 $scope');
-            });
-*/
-            //todo save cart in session/local storage
-            $scope.cart = cartService;
-//$scope.minicart = true;
-            $scope.itemInCart = function() {
-                if (_.find(cartService.$cart.items, {'id': $scope.item.id})) {
-                    return true;
-                }
-                return false;
-            }
-
-
-
-
-        }])
         .run(['cartService', function(cartService){
             cartService.init();
         }])
-        .service('cartService',['$rootScope', function($rootScope){
+        .service('cartService',function(){
             this.init = function(){
                 this.$cart = {
                     items : []
                 };
-                //console.log(this);
             };
-
 
             this.getItemById = function(id){
                 
@@ -66,6 +43,7 @@ function(angular, app){
             this.addItem = function(item){
                 //$rootScope.$broadcast('cart:itemAdded', item.id);
                 this.$cart.items.push(item);
+                //todo real product options, price etc...
             }
 
             this.removeItem = function(item){
@@ -74,79 +52,43 @@ function(angular, app){
                 })
             }
 
-
             this.getItems = function(){
-                //console.log('get');
                 return this.$cart.items;
             }
 
+        })
 
-
-        }])
-        //todo remove, unused
-        .directive('addToCart',['cartService', function(cartService){
-            //console.log('cart');
-            return {
-                restrict: 'E',
-                templateUrl:'app/cart/views/addtocart.html',
-                controller : 'CartController',
-                scope: {
-                    item: '='
-                },
-                transclude: true,
-
-                /*link: function(scope, element, attributes){
-                    scope.$watch('item', function(item) {
-                    element.bind('click', function(cartService){
-                        console.log(scope.item);
-                        cartService.addItem();
-                    });
-
-                    })
-                }*/
-            }
-        }])
-
-        .component('addCart', {
-
-            templateUrl:'app/cart/views/addcart.html',
-            controller: 'CartCompController',
-            controllerAs: 'cartc',
+        .component('addToCart', {
+            templateUrl: 'app/cart/views/comp-add-to-cart.html',
+            controller: 'CartComponentController',
             bindings: {
                 item: '<'
             }
         })
-        .controller('CartCompController', ['cartService', function(cartService, $element, $attrs){
-            var cartc = this;
+        .component('miniCart', {
+            templateUrl: 'app/cart/views/comp-mini-cart.html',
+            controller: 'CartComponentController'
+        })
+        .controller('CartComponentController', ['cartService', function(cartService, $element, $attrs){
 
-            cartc.addItem = function(item){
+            this.addItem = function(item){
                 cartService.addItem(item);
             }
 
-            cartc.itemInCart = function(item) {
+            this.getItems = function(){
+                return cartService.getItems();
+            }
+
+            this.itemInCart = function(item) {
                 if (_.find(cartService.$cart.items, {'id': item.id})) {
                     return true;
                 }
                 return false;
             }
 
-            cartc.removeItem = function(item){
+            this.removeItem = function(item){
                 cartService.removeItem(item);
             }
 
-
         }])
-
-        //todo rewrite to component
-        .directive('cart',['cartService', function(cartService){
-            return {
-                //scope: '=',
-                restrict: 'E',
-                controller : 'CartController',
-                transclude: true,
-                templateUrl: 'app/cart/views/cart.html'
-            }
-        }])
-
-
 })
